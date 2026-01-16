@@ -37,9 +37,14 @@
     const urlParams = new URLSearchParams(window.location.search);
     const redirectParam = urlParams.get('redirect');
     if (redirectParam) {
-      link = redirectParam;
-      localStorage.setItem('personalLink', link);
-    }
+  link = decodeURIComponent(redirectParam);
+  localStorage.setItem('personalLink', link);
+}
+if (urlParams.get('reset') === '1') {
+  localStorage.removeItem('personalLink');
+  alert("Zurückgesetzt. Bitte Link erneut öffnen.");
+}
+
 
     // Button klickt -> öffnet den gespeicherten Link
     document.getElementById('startButton').addEventListener('click', () => {
