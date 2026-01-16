@@ -2,7 +2,7 @@
   "name": "Medientagebuch",
   "short_name": "Medientagebuch",
   "description": "Medientagebuch – dis_ident Projekt",
-  "start_url": "index.html",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0072C6",
