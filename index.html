@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medientagebuch</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    body { 
+      font-family: sans-serif; 
+      text-align: center; 
+      margin-top: 50px;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #0072C6; /* Farbe passend zum Projekt */
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    button:hover { background-color: #005A9E; }
+  </style>
+</head>
+<body>
+  <h1>Medientagebuch</h1>
+  <p>Tippe auf den Button, um deinen Fragebogen zu starten.</p>
+  <button id="startButton">Fragebogen öffnen</button>
+
+  <script>
+    // Prüfe, ob schon ein personalisierter Link gespeichert ist
+    let link = localStorage.getItem('personalLink');
+
+    // Falls die URL einen ?redirect= Parameter hat, speichern wir ihn
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectParam = urlParams.get('redirect');
+    if (redirectParam) {
+      link = redirectParam;
+      localStorage.setItem('personalLink', link);
+    }
+
+    // Button klickt -> öffnet den gespeicherten Link
+    document.getElementById('startButton').addEventListener('click', () => {
+      if (link) {
+        window.location.href = link;
+      } else {
+        alert("Kein personalisierter Link gefunden. Bitte QR-Code erneut scannen.");
+      }
+    });
+
+    // Optional: direkt öffnen, wenn schon ein Link gespeichert ist
+    if (link) {
+      window.location.href = link;
+    }
+  </script>
+</body>
+</html>
